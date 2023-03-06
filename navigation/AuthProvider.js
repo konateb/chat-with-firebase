@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile
 } from "firebase/auth";
 
 import { auth } from "../firebase";
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     return () => {
-      unsubscribe();
+      unsubscribe;
     };
   }, []);
   return (
@@ -32,9 +33,17 @@ export const AuthProvider = ({ children }) => {
             console.log(e);
           }
         },
-        signUp: async (email, password) => {
+        signUp: async (name, email, password) => {
           try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+            const user = userCredential.user;
+            updateProfile(auth.currentUser, {
+              displayName: name,
+            });
           } catch (e) {
             console.log(e);
           }

@@ -6,7 +6,6 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuthContext } from "../navigation/AuthProvider";
 
-// create two new instances
 const ChatAppStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 function ChatApp() {

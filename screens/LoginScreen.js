@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import FormButton from "../components/FormButton";

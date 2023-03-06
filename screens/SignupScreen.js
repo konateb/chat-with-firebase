@@ -1,5 +1,5 @@
 import { IconButton, Title } from "react-native-paper";
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import FormButton from "../components/FormButton";
@@ -7,6 +7,7 @@ import FormInput from "../components/FormInput";
 import { useAuthContext } from "../navigation/AuthProvider";
 
 export default function SignupScreen({ navigation }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signUp } = useAuthContext();
@@ -15,22 +16,28 @@ export default function SignupScreen({ navigation }) {
     <View style={styles.container}>
       <Title style={styles.titleText}>Register to chat</Title>
       <FormInput
+        labelName="Name"
+        value={name}
+        autoCapitalize="none"
+        onChangeText={setName}
+      />
+      <FormInput
         labelName="Email"
         value={email}
         autoCapitalize="none"
-        onChangeText={(userEmail) => setEmail(userEmail)}
+        onChangeText={setEmail}
       />
       <FormInput
         labelName="Password"
         value={password}
         secureTextEntry={true}
-        onChangeText={(userPassword) => setPassword(userPassword)}
+        onChangeText={setPassword}
       />
       <FormButton
         title="Signup"
         modeValue="contained"
         labelStyle={styles.loginButtonLabel}
-        onPress={() => signUp(email, password)}
+        onPress={signUp}
       />
       <IconButton
         icon="keyboard-backspace"

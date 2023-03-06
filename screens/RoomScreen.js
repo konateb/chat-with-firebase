@@ -1,5 +1,5 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   GiftedChat,
   Bubble,
@@ -16,7 +16,6 @@ import {
   setDoc,
   orderBy,
   onSnapshot,
-  
 } from "firebase/firestore";
 import { useAuthContext } from "../navigation/AuthProvider";
 
@@ -26,7 +25,8 @@ const RoomScreen = ({ route }) => {
   const { thread } = route.params;
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {    const q = query(
+  useEffect(() => {
+    const q = query(
       collection(firestore, "THREADS", thread._id, "MESSAGES"),
       orderBy("createdAt")
     );
@@ -47,13 +47,11 @@ const RoomScreen = ({ route }) => {
           };
         }
         messages = [...messages, data];
-       
       });
-      
 
       setMessages(messages);
     });
- 
+    return unsub;
   }, []);
 
   // helper method that is sends a message
@@ -83,7 +81,6 @@ const RoomScreen = ({ route }) => {
   }
   function renderBubble(props) {
     return (
-     
       <Bubble
         {...props}
         wrapperStyle={{

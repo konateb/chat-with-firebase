@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 import React, { useState } from "react";
@@ -25,7 +25,7 @@ export default function AddRoomScreen({ navigation }) {
           createdAt: new Date().getTime(),
           system: true,
         });
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
       } catch (e) {
         console.error("Error adding document: ", e);
       }

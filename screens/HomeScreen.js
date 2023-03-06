@@ -1,15 +1,12 @@
 import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
-import React, { useState, useEffect } from "react";
-import FormButton from "../components/FormButton";
+import { useState, useEffect } from "react";
 import { Title, List, Divider } from "react-native-paper";
-import { useAuthContext } from "../navigation/AuthProvider";
 import Loading from "../components/Loading";
 import { firestore } from "../firebase";
 import useStatsBar from "../utils/useStatusBar";
-import { collection, getDocs, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 export default function HomeScreen({ navigation }) {
   useStatsBar("light-content");
-  const { user, logOut } = useAuthContext();
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,10 +18,9 @@ export default function HomeScreen({ navigation }) {
         querySnapshot.forEach((doc) => {
           const room = {
             _id: doc.id,
-            // give defaults
-            name: "",
+            name: "React Native",
             latestMessage: {
-              text: "",
+              text: "the default message",
             },
 
             ...doc.data(),
@@ -48,8 +44,8 @@ export default function HomeScreen({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      {/* <Title>Home Screen</Title>
-      <Title>All chat rooms will be listed here</Title> */}
+      <Title>Home Screen</Title>
+      <Title>All chat rooms will be listed here</Title>
       {/* <Title>{user.uid}</Title> */}
       <FlatList
         data={threads}
