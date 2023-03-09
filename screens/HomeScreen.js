@@ -44,9 +44,6 @@ export default function HomeScreen({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <Title>Home Screen</Title>
-      <Title>All chat rooms will be listed here</Title>
-      {/* <Title>{user.uid}</Title> */}
       <FlatList
         data={threads}
         keyExtractor={(item) => item._id}

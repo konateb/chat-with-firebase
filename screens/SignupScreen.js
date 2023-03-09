@@ -11,33 +11,35 @@ export default function SignupScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signUp } = useAuthContext();
+const onSignUp = () => {
+  signUp(name, email,password);
 
+}
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>Register to chat</Title>
       <FormInput
         labelName="Name"
         value={name}
-        autoCapitalize="none"
-        onChangeText={setName}
+        onChangeText={(text) => setName(text)}
       />
       <FormInput
         labelName="Email"
         value={email}
         autoCapitalize="none"
-        onChangeText={setEmail}
+        onChangeText={(text) => setEmail(text)}
       />
       <FormInput
         labelName="Password"
         value={password}
         secureTextEntry={true}
-        onChangeText={setPassword}
+        onChangeText={(text) => setPassword(text)}
       />
       <FormButton
         title="Signup"
         modeValue="contained"
         labelStyle={styles.loginButtonLabel}
-        onPress={signUp}
+        onPress={onSignUp}
       />
       <IconButton
         icon="keyboard-backspace"
