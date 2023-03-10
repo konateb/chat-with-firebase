@@ -31,9 +31,11 @@ as starup project.
 ## Usage
 
 The application can be tested on a device by scanning the QR code that is displayed in the terminal after running the `expo start` command.
+
 Set firestore dabase rule as follow: 
-' allow write: if request.auth != null;
-      allow read: if true;' This will prevent an issue with onSnophot when user is loggin out
+`allow write: if request.auth != null;`.
+`allow read: if true;` .
+This will prevent an issue with onSnophot when user is loggin out
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
