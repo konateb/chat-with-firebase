@@ -46,6 +46,6 @@ const auth = initializeAuth(app, {
 const firestore = getFirestore(app);
 
 // Initialize Cloud Storage and get a reference to the service
-const storage = getStorage(app);
+// const storage = getStorage(app);
 
-export { firestore, auth, storage };
+export { firestore, auth};
