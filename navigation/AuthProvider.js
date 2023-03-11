@@ -18,9 +18,7 @@ export const AuthProvider = ({ children }) => {
       setUser(currentuser);
     });
 
-    return () => {
-      unsubscribe;
-    };
+    return unsubscribe();
   }, []);
   return (
     <AuthContext.Provider
@@ -52,6 +50,7 @@ export const AuthProvider = ({ children }) => {
           try {
             await signOut(auth);
           } catch (e) {
+             console.log(error.messages);
             console.error(e);
           }
         },

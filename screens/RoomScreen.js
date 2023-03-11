@@ -51,7 +51,7 @@ const RoomScreen = ({ route }) => {
 
       setMessages(messages);
     });
-    return unsub;
+    return unsub();
   }, []);
 
   // helper method that is sends a message

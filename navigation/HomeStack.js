@@ -9,10 +9,10 @@ import { useAuthContext } from "../navigation/AuthProvider";
 const ChatAppStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 function ChatApp() {
-const { logOut } = useAuthContext();
+  const { logOut } = useAuthContext();
 
   return (
-    <ChatAppStack.Navigator>
+    <ChatAppStack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <ChatAppStack.Screen
         name="Home"
         component={HomeScreen}
@@ -30,9 +30,12 @@ const { logOut } = useAuthContext();
               icon="logout-variant"
               size={28}
               color="#ffffff"
-              onPress={() => logOut()}
+              onPress={() => {
+                logOut();
+              }}
             />
           ),
+          title: "",
         })}
       />
       <ChatAppStack.Screen
@@ -47,8 +50,16 @@ const { logOut } = useAuthContext();
 }
 export default function HomeStack() {
   return (
-    <ModalStack.Navigator mode="modal" headerMode="none">
-      <ModalStack.Screen name="ChatApp" component={ChatApp} />
+    <ModalStack.Navigator
+      mode="modal"
+      headerMode="none"
+      screenOptions={{ headerTitleAlign: "center" }}
+    >
+      <ModalStack.Screen
+        name="ChatApp"
+        component={ChatApp}
+        options={{ title: "TechsChat" }}
+      />
       <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
     </ModalStack.Navigator>
   );

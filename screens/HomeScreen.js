@@ -1,6 +1,6 @@
 import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
-import { Title, List, Divider } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 import Loading from "../components/Loading";
 import { firestore } from "../firebase";
 import useStatsBar from "../utils/useStatusBar";
@@ -18,11 +18,10 @@ export default function HomeScreen({ navigation }) {
         querySnapshot.forEach((doc) => {
           const room = {
             _id: doc.id,
-            name: "React Native",
+            name: "default Name",
             latestMessage: {
               text: "the default message",
             },
-
             ...doc.data(),
           };
           rooms.push(room);
@@ -34,9 +33,7 @@ export default function HomeScreen({ navigation }) {
         setLoading(false);
       }
     };
-    // return () => {
     return unsubscribe();
-    // };
   }, []);
 
   if (loading) {
