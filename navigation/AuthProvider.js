@@ -4,7 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 
 import { auth } from "../firebase";
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       setUser(currentuser);
     });
 
-    return unsubscribe();
+    return unsubscribe;
   }, []);
   return (
     <AuthContext.Provider
@@ -26,11 +26,17 @@ export const AuthProvider = ({ children }) => {
         user,
         logIn: async (email, password) => {
           try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+            const user = userCredential.user;
           } catch (e) {
-            console.log(e);
+            console.log(e.message);
           }
         },
+
         signUp: async (name, email, password) => {
           try {
             const userCredential = await createUserWithEmailAndPassword(
@@ -38,6 +44,7 @@ export const AuthProvider = ({ children }) => {
               email,
               password
             );
+
             const user = userCredential.user;
             updateProfile(auth.currentUser, {
               displayName: name,
@@ -46,11 +53,13 @@ export const AuthProvider = ({ children }) => {
             console.log(e);
           }
         },
+
         logOut: async () => {
           try {
             await signOut(auth);
           } catch (e) {
-             console.log(error.messages);
+            //  console.log(error.messages);
+
             console.error(e);
           }
         },

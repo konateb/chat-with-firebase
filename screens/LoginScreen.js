@@ -11,6 +11,7 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const { logIn } = useAuthContext();
 
+  
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>Welcome to Chat app</Title>

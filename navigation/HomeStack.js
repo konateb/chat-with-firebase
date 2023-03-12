@@ -32,6 +32,7 @@ function ChatApp() {
               color="#ffffff"
               onPress={() => {
                 logOut();
+                
               }}
             />
           ),
